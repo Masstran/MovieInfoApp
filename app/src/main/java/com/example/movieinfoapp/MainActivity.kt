@@ -1,7 +1,9 @@
 package com.example.movieinfoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +32,15 @@ class MainActivity : AppCompatActivity() {
         if (movieDescription !is TextView)
             throw Exception("Incorrect type of movieDescription")
         movieDescription.text = movie_data.getString(movie_description_key)
+
+        val detailsButton = movie.getViewById(R.id.details_button)
+        if (detailsButton !is Button)
+            throw Exception("Incorrect type of detailsButton")
+
+        detailsButton.setOnClickListener {
+            val intent = Intent(this,DetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {

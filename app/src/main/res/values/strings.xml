@@ -2,4 +2,6 @@
     <string name="app_name">MovieInfoApp</string>
     <string name="movie_poster_description">Movie poster</string>
     <string name="details_button">Details</string>
+    <string name="movie_comment_hint">You can enter your comment here</string>
+    <string name="share_button">Share</string>
 </resources>
