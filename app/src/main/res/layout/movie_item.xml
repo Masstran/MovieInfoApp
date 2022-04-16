@@ -4,66 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:padding="2dp"
-    >
+    android:padding="2dp">
+
     <ImageView
         android:id="@+id/movie_poster"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        app:layout_constraintWidth_max="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/movie_name"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
-        />
+        tools:src="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:maxLines="1"
         app:layout_constraintLeft_toRightOf="@id/movie_poster"
         app:layout_constraintRight_toLeftOf="@id/details_button"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="5dp"
-        tools:text="@tools:sample/full_names"
-        />
+        tools:text="@tools:sample/full_names" />
+
     <TextView
         android:id="@+id/movie_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:maxLines="5"
         android:textSize="11sp"
-        app:layout_constraintLeft_toRightOf="@id/movie_poster"
-        app:layout_constraintRight_toLeftOf="@id/details_button"
-        app:layout_constraintTop_toBottomOf="@id/movie_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="5dp"
-        tools:text="@tools:sample/lorem/random"
-        />
+        app:layout_constraintLeft_toLeftOf="@id/movie_name"
+        app:layout_constraintRight_toRightOf="@id/movie_name"
+        app:layout_constraintTop_toBottomOf="@id/movie_name"
+        tools:text="@tools:sample/lorem/random" />
+
     <Button
         android:id="@+id/details_button"
         android:layout_width="100dp"
         android:layout_height="0dp"
         android:text="@string/details_button"
+        app:layout_constraintBottom_toTopOf="@id/like_marker"
         app:layout_constraintDimensionRatio="2:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintLeft_toRightOf="@id/movie_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <CheckBox
         android:id="@+id/like_marker"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintRight_toLeftOf="@id/comment_marker"
-        app:layout_constraintLeft_toLeftOf="@id/details_button"
-        app:layout_constraintTop_toBottomOf="@id/details_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintLeft_toLeftOf="@id/details_button"
+        app:layout_constraintRight_toLeftOf="@id/comment_marker"
+        app:layout_constraintTop_toBottomOf="@id/details_button"
+        tools:src="@tools:sample/avatars" />
+
     <CheckBox
         android:id="@+id/comment_marker"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintRight_toRightOf="@id/details_button"
+        app:layout_constraintBottom_toBottomOf="@id/like_marker"
         app:layout_constraintLeft_toRightOf="@id/like_marker"
-        app:layout_constraintTop_toBottomOf="@id/details_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="@id/details_button"
+        app:layout_constraintTop_toTopOf="@id/like_marker"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

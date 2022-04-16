@@ -8,16 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
-        <include layout="@layout/movie_item"/>
+        <include layout="@layout/movie_item"
+            android:id="@+id/movie1"/>
+        <include layout="@layout/movie_item"
+            android:id="@+id/movie2"/>
+        <include layout="@layout/movie_item"
+            android:id="@+id/movie3"/>
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
+<!--        <include layout="@layout/movie_item"/>-->
 
     </LinearLayout>
 </ScrollView>
