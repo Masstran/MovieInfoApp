@@ -1,17 +1,34 @@
 package com.example.movieinfoapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
+    private var highlightedMovieId: Int = 0
+        set(value) {
+            val oldTextColor = resources.getColor(R.color.default_text)
+            val oldView = findViewById<ConstraintLayout>(field) ?: null
+            val oldText = oldView?.findViewById<TextView>(R.id.movie_name)
+            oldText?.setTextColor(oldTextColor)
+            val newTextColor = resources.getColor(R.color.purple_500)
+            val view = findViewById<ConstraintLayout>(value)
+            val newText = view.findViewById<TextView>(R.id.movie_name)
+            newText.setTextColor(newTextColor)
+            field = value
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        highlightedMovieId = R.id.movie1
+        savedInstanceState?.let { handleState(it) }
         for (movieId in movieData.keys()) {
             when (movieId) {
                 "movie1" -> setMovie(R.id.movie1, movieId)
@@ -21,17 +38,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(highlightedMovieIdKey, highlightedMovieId)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        handleState(savedInstanceState)
+    }
+
+    fun handleState(savedInstanceState: Bundle) {
+        highlightedMovieId = savedInstanceState.getInt(highlightedMovieIdKey)
+    }
+
     private fun setMovie(id: Int, movieId: String) {
         val movie = findViewById<ConstraintLayout>(id)
         val thisMovieData: JSONObject = movieData.getJSONObject(movieId)
-        val movieName = movie.getViewById(R.id.movie_name)
-        if (movieName !is TextView)
-            throw Exception("Incorrect type of movieName")
+        val movieName = movie.findViewById<TextView>(R.id.movie_name)
+        Log.d("MovieInfoApp",thisMovieData.toString())
         movieName.text = thisMovieData.getString(movieNameKey)
 
-        val movieDescription = movie.getViewById(R.id.movie_description)
-        if (movieDescription !is TextView)
-            throw Exception("Incorrect type of movieDescription")
+        val movieDescription = movie.findViewById<TextView>(R.id.movie_description)
         movieDescription.text = thisMovieData.getString(movieDescriptionKey)
 
         val detailsButton = movie.getViewById(R.id.details_button)
@@ -39,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             throw Exception("Incorrect type of detailsButton")
 
         detailsButton.setOnClickListener {
+            highlightedMovieId = id
             val intent = Intent(this,DetailsActivity::class.java)
             intent.putExtra("movieId", movieId)
             startActivity(intent)
@@ -65,6 +94,7 @@ class MainActivity : AppCompatActivity() {
 
         const val movieNameKey = "movie_name"
         const val movieDescriptionKey = "movie_description"
+        const val highlightedMovieIdKey = "highlightedMovieId"
 
     }
 }
