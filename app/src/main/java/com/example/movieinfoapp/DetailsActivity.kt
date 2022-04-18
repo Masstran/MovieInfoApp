@@ -26,7 +26,7 @@ class DetailsActivity : AppCompatActivity() {
         shareButton.setOnClickListener {
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Let's go watch movies!")
+                putExtra(Intent.EXTRA_TEXT, "Let's go watch movies! I heard ${movieName.text} is good!")
                 type = "text/plain"
             }
             val shareIntent = Intent.createChooser(intent, null)

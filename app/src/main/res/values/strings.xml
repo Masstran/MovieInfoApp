@@ -4,4 +4,5 @@
     <string name="details_button">Details</string>
     <string name="movie_comment_hint">You can enter your comment here</string>
     <string name="share_button">Share</string>
+    <string name="like">Like!</string>
 </resources>

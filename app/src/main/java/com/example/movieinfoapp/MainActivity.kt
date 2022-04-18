@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var highlightedMovieId: Int = 0
         set(value) {
             val oldTextColor = resources.getColor(R.color.default_text)
-            val oldView = findViewById<ConstraintLayout>(field) ?: null
+            val oldView = findViewById<ConstraintLayout>(field)
             val oldText = oldView?.findViewById<TextView>(R.id.movie_name)
             oldText?.setTextColor(oldTextColor)
             val newTextColor = resources.getColor(R.color.purple_500)
