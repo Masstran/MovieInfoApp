@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:padding="2dp">
+    android:padding="2dp" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_marginVertical="-5dp"
+        android:layout_marginHorizontal="-2dp"
+        app:layout_constraintTop_toTopOf="@id/movie_poster"
+        app:layout_constraintBottom_toBottomOf="@id/movie_poster"
+        android:src="@android:drawable/edit_text" />
 
     <ImageView
         android:id="@+id/movie_poster"
@@ -16,6 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/movie_name"
         app:layout_constraintTop_toTopOf="parent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -23,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:maxLines="1"
+        android:maxLines="2"
         app:layout_constraintLeft_toRightOf="@id/movie_poster"
         app:layout_constraintRight_toLeftOf="@id/details_button"
         app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@id/details_button"
         tools:src="@tools:sample/avatars" />
 
-    <CheckBox
+    <ImageView
         android:id="@+id/comment_marker"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -70,5 +81,5 @@
         app:layout_constraintLeft_toRightOf="@id/like_marker"
         app:layout_constraintRight_toRightOf="@id/details_button"
         app:layout_constraintTop_toTopOf="@id/like_marker"
-        tools:src="@tools:sample/avatars" />
+        android:src="@android:drawable/btn_star_big_off" />
 </androidx.constraintlayout.widget.ConstraintLayout>
