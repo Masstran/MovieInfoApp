@@ -5,22 +5,21 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private var highlightedMovieId: Int = 0
         set(value) {
-            val oldTextColor = resources.getColor(R.color.default_text)
             val oldView = findViewById<ConstraintLayout>(field)
             val oldText = oldView?.findViewById<TextView>(R.id.movie_name)
-            oldText?.setTextColor(oldTextColor)
-            val newTextColor = resources.getColor(R.color.purple_500)
+            oldText?.isSelected = false
             val view = findViewById<ConstraintLayout>(value)
             val newText = view.findViewById<TextView>(R.id.movie_name)
-            newText.setTextColor(newTextColor)
+            newText.isSelected = true
             field = value
         }
 
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         highlightedMovieId = R.id.movie1
         savedInstanceState?.let { handleState(it) }
+
         for (movieId in movieData.keys()) {
             when (movieId) {
                 "movie1" -> setMovie(R.id.movie1, movieId)
@@ -70,8 +70,27 @@ class MainActivity : AppCompatActivity() {
             highlightedMovieId = id
             val intent = Intent(this,DetailsActivity::class.java)
             intent.putExtra("movieId", movieId)
-            startActivity(intent)
+            startActivityForResult(intent, 123)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 123) {
+            if (resultCode == RESULT_OK) {
+                if (data!!.hasExtra(DetailsActivity.COMMENT_KEY)) {
+                    val comment = data.getStringExtra(DetailsActivity.COMMENT_KEY)
+//                    val commentMarker = findViewById<ImageView>(R.id.comment_marker)
+                    Log.d("MovieInfoApp", "Comment is $comment")
+                }
+                if (data.hasExtra(DetailsActivity.LIKE_VALUE_KEY)) {
+                    val like = data.getBooleanExtra(DetailsActivity.LIKE_VALUE_KEY, false)
+//                    val likeMarker = findViewById<CheckBox>(R.id.like_marker)
+//                    likeMarker.isActivated = like
+                    Log.d("MovieInfoApp", "Like is $like")
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     companion object {

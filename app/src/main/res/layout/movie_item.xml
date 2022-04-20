@@ -36,7 +36,7 @@
         android:layout_marginStart="5dp"
         android:maxLines="2"
         android:textSize="20sp"
-        android:textColor="@android:color/tab_indicator_text"
+        android:textColor="@color/text_color"
         app:layout_constraintLeft_toRightOf="@id/movie_poster"
         app:layout_constraintRight_toLeftOf="@id/details_button"
         app:layout_constraintTop_toTopOf="parent"
@@ -84,5 +84,5 @@
         app:layout_constraintLeft_toRightOf="@id/like_marker"
         app:layout_constraintRight_toRightOf="@id/details_button"
         app:layout_constraintTop_toTopOf="@id/like_marker"
-        android:src="@android:drawable/btn_star_big_off" />
+        android:src="@android:drawable/btn_star_big_off"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
