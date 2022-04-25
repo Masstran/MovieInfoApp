@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieInfoApp</string>
+    <string name="details_button">Детали</string>
+    <string name="movie_comment_hint">Напишите здесь комментарий</string>
+    <string name="share_button">Поделиться</string>
+    <string name="like">Лайк!</string>
+</resources>
